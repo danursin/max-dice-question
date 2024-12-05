@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Max's Bar Dice Game</title>
+</head>
+<body>
+
+	<div id="container"></div>
+
+    <script>
+        function dice1(){
+		const arr = new Array(36).fill(0);
+	  
+	  for(let i1 = 1; i1 <= 6; i1++){
+		const sum = i1;
+		arr[sum - 1] += 1;
+	  }
+	  
+	  for(let i = 0; i < arr.length; i += 1){
+		arr[i] = arr[i] / Math.pow(6, 1);
+	  }
+	  
+	  return arr;
+	}
+
+	function dice2(){
+		const arr = new Array(36).fill(0);
+	  
+	  for(let i1 = 1; i1 <= 6; i1++){
+		for(let i2 = 1; i2 <= 6; i2++){
+		  const sum = i1 + i2;
+		  arr[sum - 1] += 1;
+		}
+	  }
+	  
+	  for(let i = 0; i < arr.length; i += 1){
+		arr[i] = arr[i] / Math.pow(6, 2);
+	  }
+	  
+	  return arr;
+	}
+
+	function dice3(){
+		const arr = new Array(36).fill(0);
+	  
+	  for(let i1 = 1; i1 <= 6; i1++){
+		for(let i2 = 1; i2 <= 6; i2++){
+		  for(let i3 = 1; i3 <= 6; i3++){
+			const sum = i1 + i2 + i3;
+			arr[sum - 1] += 1;
+		  }
+		}
+	  }
+	  
+	  for(let i = 0; i < arr.length; i += 1){
+		arr[i] = arr[i] / Math.pow(6, 3);
+	  }
+	  
+	  return arr;
+	}
+
+	function dice4(){
+		const arr = new Array(36).fill(0);
+	  
+	  for(let i1 = 1; i1 <= 6; i1++){
+		for(let i2 = 1; i2 <= 6; i2++){
+		  for(let i3 = 1; i3 <= 6; i3++){
+			for(let i4 = 1; i4 <= 6; i4++){
+			  const sum = i1 + i2 + i3 + i4;
+			  arr[sum - 1] += 1;
+			}
+		  }
+		}
+	  }
+	  
+	  for(let i = 0; i < arr.length; i += 1){
+		arr[i] = arr[i] / Math.pow(6, 4);
+	  }
+	  
+	  return arr;
+	}
+
+	function dice5(){
+		const arr = new Array(36).fill(0);
+	  
+	  for(let i1 = 1; i1 <= 6; i1++){
+		for(let i2 = 1; i2 <= 6; i2++){
+		  for(let i3 = 1; i3 <= 6; i3++){
+			for(let i4 = 1; i4 <= 6; i4++){
+			  for(let i5 = 1; i5 <= 6; i5++){
+				const sum = i1 + i2 + i3 + i4 + i5;
+				arr[sum - 1] += 1;
+			  }
+			}
+		  }
+		}
+	  }
+	  
+	  for(let i = 0; i < arr.length; i += 1){
+		arr[i] = arr[i] / Math.pow(6, 5);
+	  }
+	  
+	  return arr;
+	}
+
+	function dice6(){
+		const arr = new Array(36).fill(0);
+	  
+	  for(let i1 = 1; i1 <= 6; i1++){
+		for(let i2 = 1; i2 <= 6; i2++){
+		  for(let i3 = 1; i3 <= 6; i3++){
+			for(let i4 = 1; i4 <= 6; i4++){
+			  for(let i5 = 1; i5 <= 6; i5++){
+				for(let i6 = 1; i6 <= 6; i6++){
+				  const sum = i1 + i2 + i3 + i4 + i5 + i6;
+				  arr[sum - 1] += 1;
+				}
+			  }
+			}
+		  }
+		}
+	  }
+	  
+	  for(let i = 0; i < arr.length; i += 1){
+		arr[i] = arr[i] / Math.pow(6, 5);
+	  }
+	  
+	  return arr;
+	}
+
+
+	const chartOptions = {
+		chart: {
+			type: 'line',
+			zoomType: 'xy'
+		},
+		title: {
+			text: 'Probability of Achieving Sums with 1-6 Dice'
+		},
+		xAxis: {
+			title: {
+				text: 'Sum of Dice (1-36)'
+			},
+			categories: Array.from({ length: 36 }, (_, i) => i + 1) // [1, 2, ..., 36]
+		},
+		yAxis: {
+			title: {
+				text: 'Probability (%)'
+			},
+			min: 0
+		},
+		tooltip: {
+			shared: true,
+			crosshairs: true,
+			valueSuffix: '%'
+		},
+		series: [
+			{
+				name: '1 Die',
+				data: dice1()
+			},
+			{
+				name: '2 Dice',
+				data: dice2()
+			},
+			{
+				name: '3 Dice',
+				data: dice3()
+			},
+			{
+				name: '4 Dice',
+				data: dice4()
+			},
+			{
+				name: '5 Dice',
+				data: dice5()
+			},
+			{
+				name: '6 Dice',
+				data: dice6()
+			}
+		],
+		plotOptions: {
+			line: {
+				marker: {
+					enabled: false
+				}
+			}
+		}
+	};
+
+	Highcharts.chart('container', chartOptions);
+    </script>
+</body>
+</html>
